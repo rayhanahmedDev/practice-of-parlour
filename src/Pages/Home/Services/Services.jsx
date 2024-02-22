@@ -20,7 +20,7 @@ const Services = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 max-w-7xl gap-12 mx-auto mb-12 cursor-pointer">
                 {
                     service.map(ser => <Link to={`/details/${ser._id}`} key={ser._id}>
-                        <div className="card bg-base-100 hover:drop-shadow-2xl">
+                        <div className="card h-96 bg-base-100 hover:drop-shadow-2xl">
                             <figure className="px-10 pt-10">
                                 <img src={ser.img} alt="" className="rounded-xl w-[72px]" />
                             </figure>

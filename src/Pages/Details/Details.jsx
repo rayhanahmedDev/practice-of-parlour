@@ -36,7 +36,7 @@ const Details = () => {
 return (
     <div>
         <Navber></Navber>
-        <div className="h-[70vh] flex justify-center mt-6">
+        <div className="lg:h-[70vh] flex justify-center mt-6">
             <div className="card max-w-sm bg-base-100 hover:shadow-xl">
                 <figure className="px-10 pt-10">
                     <img src={img} alt="" className="rounded-xl w-[72px]" />

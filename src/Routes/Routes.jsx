@@ -8,6 +8,9 @@ import Details from "../Pages/Details/Details";
 import Login from "../Pages/Login/Login";
 import Dashboard from "../Layout/Dashboard";
 import SignUp from "../Pages/SignUp/SignUp";
+import Review from "../Pages/DashBoard/Review/Review";
+import Bookings from "../Pages/DashBoard/Bookings/Bookings";
+import Book from "../Pages/DashBoard/Book/Book";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +41,19 @@ const router = createBrowserRouter([
         path:'dashboard',
         element:<Dashboard></Dashboard>,
         children : [
-            
+            {
+                path : "review",
+                element : <Review></Review>
+            },
+            {
+                path : 'bookings',
+                element : <Bookings></Bookings>,
+                loader : () => fetch("http://localhost:5000/bookingsData")
+            },
+            {
+                path : "book",
+                element : <Book></Book>
+            }
         ]
     }
 ]);

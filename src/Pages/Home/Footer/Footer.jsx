@@ -3,7 +3,7 @@ import locationImg from '../../../assets/icons/map-pin-2-fill.png'
 const Footer = () => {
     return (
         <div>
-            <footer className="footer max-w-7xl mx-auto p-10 text-white">
+            <footer className="footer max-w-7xl mx-auto p-10 text-white pb-[100px] pt-[58px]">
                 <div className='flex gap-4 items-center'>
                     <img className='w-8' src={locationImg} alt="" />
                     <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>

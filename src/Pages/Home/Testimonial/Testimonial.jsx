@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import iconImg from '../../../assets/icons/Group 33046.svg'
 import { useEffect } from 'react';
+import TestimonialCard from '../../../Component/TestimonialCard';
+
 
 const Testimonial = () => {
 
@@ -19,21 +20,7 @@ const Testimonial = () => {
                 {/* card */}
 
                 {
-                    testimonials.map(test => <div key={test.id} className="card bg-base-100 py-8 px-8 hover:drop-shadow-2xl">
-                        <div className='flex items-center'>
-                            <figure className="mr-5">
-                                <img src={test.img} alt="" className="rounded-xl w-[72px]" />
-                            </figure>
-                            <div>
-                                <h2 className="card-title">{test.title}</h2>
-                                <p className="text-[#F63E7B] text-sm font-medium">{test.des2}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p className='my-4'>{test.des}</p>
-                            <img className='w-32' src={iconImg} alt="" />
-                        </div>
-                    </div>)
+                    testimonials.map(test => <TestimonialCard key={test.id} test={test}></TestimonialCard>)
                 }
 
             </div>
