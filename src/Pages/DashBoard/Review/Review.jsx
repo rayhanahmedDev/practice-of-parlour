@@ -2,7 +2,7 @@
 const Review = () => {
     return (
         <div>
-            <div className="mt-6 pl-10">
+            <div className="mt-6 lg:pl-10 px-4">
                 <input className="md:w-[570px] w-full h-14 pl-5" placeholder="Your Name" type="text" name="" id="" />
 
                 <input className="md:w-[570px] w-full h-14 pl-5 mt-5" placeholder="Company’s name, Designation" type="text" name="" id="" />

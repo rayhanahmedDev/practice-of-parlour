@@ -16,7 +16,7 @@ const Book = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mt-6 pl-10">
+            <div className="mt-6 lg:pl-10 px-4">
                 <input
                     required
                     {...register("name", { required: true })}
@@ -47,8 +47,11 @@ const Book = () => {
 
                 {/* payment system */}
                 <div>
-                    <p>Pay With</p>
-                    <p>Credit card</p>
+                    <p className="my-5">Pay With</p>
+                    <select name="" id="">
+                        <option value="credit_card">Credit Card</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
                 </div>
                 {/* nested input field */}
                 <div>
@@ -81,7 +84,8 @@ const Book = () => {
                             id="" />
                     </div>
                 </div>
-                <div className="mt-6">
+                <div className="mt-6 flex items-center justify-between md:w-[570px]">
+                    <p className="font-bold">Your Service  charged will be $1000</p>
                     <button type="submit" className="btn px-14 btn-error bg-[#F63E7B] text-white">Pay</button>
                 </div>
             </div>
