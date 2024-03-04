@@ -11,6 +11,11 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Review from "../Pages/DashBoard/Review/Review";
 import Bookings from "../Pages/DashBoard/Bookings/Bookings";
 import Book from "../Pages/DashBoard/Book/Book";
+import Payments from "../Pages/DashBoard/Payments/Payments";
+import OrderList from "../Pages/DashBoard/OrderList/OrderList";
+import AdminRoute from "../Provider/AdminRoute";
+import AddServices from "../Pages/DashBoard/AddServices/AddServices";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +44,7 @@ const router = createBrowserRouter([
     },
     {
         path:'dashboard',
-        element:<Dashboard></Dashboard>,
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children : [
             {
                 path : "review",
@@ -53,6 +58,21 @@ const router = createBrowserRouter([
             {
                 path : "book",
                 element : <Book></Book>
+            },
+            {
+                path : 'payments',
+                element : <Payments></Payments>
+            },
+
+            // admin dashboard
+            {
+                path : 'order-list',
+                element : <AdminRoute><OrderList></OrderList></AdminRoute>,
+                loader : () => fetch("http://localhost:5000/orders")
+            },
+            {
+                path : 'add-service',
+                element : <AdminRoute><AddServices></AddServices></AdminRoute>
             }
         ]
     }

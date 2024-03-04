@@ -1,6 +1,10 @@
+import UseAuth from '../../../Hooks/UseAuth';
 import DashLogo from '../../../assets/logo.png'
 
 const DashNav = () => {
+
+    const {user} = UseAuth()
+
     return (
         <div>
             <div className="drawer overflow-hidden">
@@ -19,7 +23,7 @@ const DashNav = () => {
                         <div className="flex-none hidden lg:block">
                             <ul className="menu-horizontal">
                                 {/* Navbar menu content here */}
-                                <h2 className="text-xl font-medium">Rayhan</h2>
+                                <h2 className="text-xl font-medium">{user.displayName}</h2>
                             </ul>
                         </div>
                     </div>

@@ -12,7 +12,7 @@ const Navber = () => {
 
     const links = <>
         <li><NavLink className='mr-8' to='/'>Home</NavLink></li>
-        <li><NavLink className='mr-8' to='/dashboard'>DashBoard</NavLink></li>
+        {user?.email && <li><NavLink className='mr-8' to='/dashboard'>DashBoard</NavLink></li>}
         <li><NavLink className='mr-8' to='/team'>Our Team</NavLink></li>
         <li><NavLink className='mr-8' to='/contact'>Contact Us</NavLink></li>
         {user?.email ? <li><button className='mr-4' onClick={handleLogOut}>LogOut</button></li> : <li><NavLink className='mr-4' to='/login'>Login</NavLink></li>}

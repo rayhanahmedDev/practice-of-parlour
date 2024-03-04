@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 export const AuthContext = createContext([])
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -16,12 +16,12 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider)
     }
 
-    const createUser = (email,password) => {
+    const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const signIn = (email,password) => {
+    const signIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
@@ -31,8 +31,14 @@ const AuthProvider = ({children}) => {
         return signOut(auth)
     }
 
+    const userProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        })
+    }
+
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
             console.log('state change', currentUser);
             setLoading(false)
@@ -40,7 +46,7 @@ const AuthProvider = ({children}) => {
         return () => {
             return unsubscribe;
         }
-    },[])
+    }, [])
 
     const authInfo = {
         user,
@@ -48,7 +54,8 @@ const AuthProvider = ({children}) => {
         googleLogin,
         createUser,
         signIn,
-        logOut
+        logOut,
+        userProfile
     }
     return (
         <AuthContext.Provider value={authInfo}>

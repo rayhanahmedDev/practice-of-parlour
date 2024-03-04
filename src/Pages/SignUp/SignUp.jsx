@@ -2,33 +2,70 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 import { useForm, } from "react-hook-form"
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 const SignUp = () => {
 
-    const {googleLogin, createUser} = UseAuth()
+    const { googleLogin, createUser, userProfile } = UseAuth()
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
+
 
     const {
         register,
         handleSubmit,
-      } = useForm()
-      const onSubmit = (data) => {
+        reset
+    } = useForm()
+    const onSubmit = (data) => {
         createUser(data.email, data.password)
-        .then(result => {
-            console.log(result.user);
-            navigate('/login')
-        })
-      }
+            .then((result) => {
+                console.log(result.user);
+                userProfile(data.name, data.photoURL)
+
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            role: "guest"
+                        }
+
+                        axiosPublic.post('/signUp-Users', userInfo)
+                            .then((res) => {
+                                if (res.data.insertedId) {
+                                    reset()
+                                    Swal.fire({
+                                        title: "Sign Up Successful",
+                                        text: "You clicked the button!",
+                                        icon: "success"
+                                    });
+                                    navigate('/login')
+                                }
+                            }).catch(error => {
+                                console.log(error);
+                            })
+                    })
+
+
+            }).catch(error => {
+                console.log(error);
+                Swal.fire({
+                    title: "Email Already in use",
+                    text: "You clicked the button!",
+                    icon: "error"
+                });
+            })
+    }
 
     const handleGoogle = () => {
         googleLogin()
-        .then(result => {
-            console.log(result.user);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     return (
         <div>
@@ -64,7 +101,7 @@ const SignUp = () => {
                                     Email address
                                 </label>
                                 <input
-                                {...register("email", { required: true })}
+                                    {...register("email", { required: true })}
                                     type='email'
                                     name='email'
                                     id='email'
@@ -81,7 +118,7 @@ const SignUp = () => {
                                     </label>
                                 </div>
                                 <input
-                                {...register("password", { required: true })}
+                                    {...register("password", { required: true })}
                                     type='password'
                                     name='password'
                                     autoComplete='current-password'

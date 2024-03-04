@@ -1,0 +1,17 @@
+input[type="file"] {
+    display: none;
+}
+
+label{
+    display: inline-block;
+    color: #F63E7B;
+    background: #FFEAF3;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.label-style{
+    border: 2px solid #F63E7B;
+}
