@@ -16,6 +16,7 @@ import OrderList from "../Pages/DashBoard/OrderList/OrderList";
 import AdminRoute from "../Provider/AdminRoute";
 import AddServices from "../Pages/DashBoard/AddServices/AddServices";
 import PrivateRoute from "../Provider/PrivateRoute";
+import MakeAdmin from "../Pages/DashBoard/MakeAdmin/MakeAdmin";
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path : 'add-service',
                 element : <AdminRoute><AddServices></AddServices></AdminRoute>
+            },
+            {
+                path : "make-admin",
+                element : <AdminRoute><MakeAdmin></MakeAdmin></AdminRoute>
             }
         ]
     }
